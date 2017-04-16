@@ -1,0 +1,55 @@
+<form action="" class="well">
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="Enter username" [(ngModel)]="username" name="username" (keyup)="searchUser()">
+	</div>	
+</form>
+
+<div *ngIf="user">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{user.name}}</h3>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-4">
+					<img src="{{user.avatar_url}}" class="img-thumbnail" alt="">
+					<a href="{{user.html_url}}" target="_blank" class="btn btn-default btn-block">View Profile</a>
+				</div>
+				<div class="col-md-8">
+					<div class="stats">
+						<span class="label label-success">{{user.public_repos}} Repos</span>
+						<span class="label label-warning">{{user.followers}} Followers</span>
+						<span class="label label-danger">{{user.following}} Following</span>
+					</div>
+					<br />
+					<ul class="list-group">
+						<li class="list-group-item"><strong>Username: </strong>{{user.login}}</li>
+						<li class="list-group-item"><strong>Location: </strong>{{user.location}}</li>
+						<li class="list-group-item"><strong>Email: </strong>{{user.email}}</li>
+						<li class="list-group-item"><strong>Active since: </strong>{{user.created_at}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">{{user.name}} Repos</h3>
+		</div>
+		<div class="panel-body">
+			<div *ngFor="let repos of repo">
+				<div class="row">
+					<div class="col-md-8">
+						<a href="{{repos.html_url}}" target="_blank"><h4>{{repos.name}}</h4></a>
+						<p>{{repos.description}}</p>
+					</div>
+					<div class="col-md-4">
+						<span class="label label-success">Watchers : {{repos.watchers}}</span>
+						<span class="label label-warning">Forks : {{repos.forks}}</span>
+						<span class="label label-danger">Dev in : {{repos.language}}</span>
+					</div>
+				</div>
+				<hr>
+			</div>
+		</div>
+	</div></div>
